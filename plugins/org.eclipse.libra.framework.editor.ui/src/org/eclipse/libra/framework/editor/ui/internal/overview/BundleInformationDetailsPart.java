@@ -155,8 +155,11 @@ public class BundleInformationDetailsPart extends AbstractFormPart implements ID
 
 		public Object[] getChildren(Object parentElement) {
 			if (parentElement instanceof IPackageImport) {
-				String supplierId = ((IPackageImport) parentElement).getSupplierId();
-				return new Object[] { bundles.get(Long.valueOf(supplierId)) };
+ 				String supplierId = ((IPackageImport) parentElement).getSupplierId();
+				IBundle value = bundles.get(Long.valueOf(supplierId));
+				if (value != null) {
+					return new Object[] { value };
+				}
 			}
 			return new Object[0];
 		}
