@@ -39,8 +39,12 @@ public abstract class BundleDependency {
 	@Override
 	public int hashCode() {
 		int hashCode = 17;
-		hashCode = 31 * hashCode + exportingBundle.hashCode();
-		hashCode = 31 * hashCode + importingBundle.hashCode();
+		if (exportingBundle != null) {
+			hashCode = 31 * hashCode + exportingBundle.hashCode();
+		}
+		if (importingBundle != null) {
+			hashCode = 31 * hashCode + importingBundle.hashCode();
+		}
 		return hashCode;
 	}
 

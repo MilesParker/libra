@@ -391,7 +391,9 @@ public class BundleDependencyContentProvider implements IGraphContentProvider, I
 		if (outgoingDependencyDegree >= degree) {
 			for (IPackageImport pe : bundle.getPackageImports()) {
 				IBundle dependantBundle = this.bundles.get(Long.valueOf(pe.getSupplierId()));
-
+				if (dependantBundle == null) {
+					continue;
+				}
 				Set<BundleDependency> bundleDependencies = null;
 				if (dependenciesByBundle.containsKey(bundle)) {
 					bundleDependencies = dependenciesByBundle.get(bundle);
